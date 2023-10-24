@@ -1,0 +1,7 @@
+stages:
+  train:
+    cmd: python main.py
+    deps:
+      - cm_imports.py
+      - BasicCNN.py
+      - BasicDataset.py
