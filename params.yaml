@@ -1,0 +1,13 @@
+base:
+  project: MNIST
+  data_dir: data
+  model_dir: models
+
+  data_split:
+    test_size: 0.2
+
+  train:
+    model_type: BasicCNN
+    optimizer: Adam
+    lr: 0.04
+    epoch: 10

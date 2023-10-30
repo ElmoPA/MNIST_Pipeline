@@ -1,0 +1,64 @@
+schema: '2.0'
+stages:
+  data_split:
+    cmd: python stages/data_split.py --config=params.yaml
+    deps:
+    - path: data/test
+      hash: md5
+      md5: ab3353d41bd7a24a20a31f29b64e3b3c.dir
+      size: 66544770
+      nfiles: 8
+    - path: data/train
+      hash: md5
+      md5: ab3353d41bd7a24a20a31f29b64e3b3c.dir
+      size: 66544770
+      nfiles: 8
+    outs:
+    - path: data/test_image.pt
+      hash: md5
+      md5: d5ea828ab1d49e21a4b68c40e9258d14
+      size: 31361195
+    - path: data/test_label.pt
+      hash: md5
+      md5: b88e28d993d5c9195e7de09912f21e09
+      size: 81195
+    - path: data/train_image.pt
+      hash: md5
+      md5: 361ea55f0a3661c45377347f8ee5f757
+      size: 188161200
+    - path: data/train_label.pt
+      hash: md5
+      md5: feeaea496b5ce3b4eabc879fa79db22f
+      size: 481200
+  train:
+    cmd: python stages/train.py --config=params.yaml
+    deps:
+    - path: data/test_image.pt
+      hash: md5
+      md5: d5ea828ab1d49e21a4b68c40e9258d14
+      size: 31361195
+    - path: data/test_label.pt
+      hash: md5
+      md5: b88e28d993d5c9195e7de09912f21e09
+      size: 81195
+    - path: data/train_image.pt
+      hash: md5
+      md5: 361ea55f0a3661c45377347f8ee5f757
+      size: 188161200
+    - path: data/train_label.pt
+      hash: md5
+      md5: feeaea496b5ce3b4eabc879fa79db22f
+      size: 481200
+    - path: models/BasicCNN.py
+      hash: md5
+      md5: d422233a708ab67a8becbdc2b6d145ad
+      size: 391
+    params:
+      params.yaml:
+        base.train.epoch: 10
+        base.train.lr: 0.04
+    outs:
+    - path: metrics.json
+      hash: md5
+      md5: 81b069e06f804fe273327418718bdeba
+      size: 95

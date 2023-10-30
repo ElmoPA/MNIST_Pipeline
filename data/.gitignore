@@ -1,0 +1,6 @@
+/train
+/test
+/train_image.pt
+/train_label.pt
+/test_image.pt
+/test_label.pt

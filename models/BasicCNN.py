@@ -1,4 +1,4 @@
-from cm_imports import nn
+import torch.nn as nn
 
 class BasicCNN(nn.Module):
     def __init__(self):

@@ -1,0 +1,24 @@
+stages:
+  data_split:
+    cmd: python stages/data_split.py --config=params.yaml
+    deps:
+    - data/test
+    - data/train
+    outs:
+    - data/train_image.pt
+    - data/train_label.pt
+    - data/test_image.pt
+    - data/test_label.pt
+  train:
+    cmd: python stages/train.py --config=params.yaml
+    deps:
+    - data/train_image.pt
+    - data/train_label.pt
+    - data/test_image.pt
+    - data/test_label.pt
+    - models/BasicCNN.py
+    params:
+    - base.train.epoch
+    - base.train.lr
+    metrics:
+    - metrics.json
